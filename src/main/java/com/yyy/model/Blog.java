@@ -13,17 +13,9 @@ public class Blog {
     private String title;
     private String content;
 
+
     @ManyToOne
     private BlogType blogType;
-
-    public Blog() {
-    }
-
-    public Blog(String title, String content, BlogType blogType) {
-        this.title = title;
-        this.content = content;
-        this.blogType = blogType;
-    }
 
     public Long getId() {
         return id;

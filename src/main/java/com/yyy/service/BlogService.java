@@ -1,6 +1,7 @@
 package com.yyy.service;
 
 import com.yyy.model.Blog;
+import com.yyy.model.BlogType;
 
 import java.util.List;
 
@@ -12,4 +13,6 @@ public interface BlogService {
     void save(Blog model);
 
     void remove(Long id);
+
+    List<BlogType> findAllBlogType();
 }

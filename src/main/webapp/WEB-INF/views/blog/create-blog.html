@@ -24,9 +24,12 @@
     </label>
     <label>
         <label>Blog Type: </label>
-        <label>
-            <input type="number" th:field="*{blogType.id}">
-        </label>
+        <select th:field="*{blogType.id}">
+            <option th:each="type : ${blogType}"
+                    th:value="${type.id}"
+                    th:text="${type.name}"
+            ></option>
+        </select>
     </label>
     <input type="submit" value="Create">
 </form>

@@ -20,6 +20,7 @@ public class BlogController {
 
     @GetMapping(value = "/create-blog")
     public String showCreateForm(Model model){
+        model.addAttribute("blogType",blogService.findAllBlogType());
         model.addAttribute("blog",new Blog());
         return "create-blog";
     }

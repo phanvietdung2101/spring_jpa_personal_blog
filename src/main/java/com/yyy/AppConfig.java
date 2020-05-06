@@ -1,7 +1,6 @@
 package com.yyy;
 
 import com.yyy.repository.BlogRepository;
-import com.yyy.repository.BlogRepositoryImpl;
 import com.yyy.service.BlogService;
 import com.yyy.service.BlogServiceImpl;
 import org.springframework.beans.BeansException;
@@ -11,6 +10,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -35,6 +35,7 @@ import java.util.Properties;
 @EnableWebMvc
 @ComponentScan("com.yyy.controller")
 @EnableTransactionManagement
+@EnableJpaRepositories("com.yyy.repository")
 public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
@@ -70,11 +71,6 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     }
 
     // JPA Config
-    @Bean
-    @Qualifier(value = "entityManager")
-    public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
-        return entityManagerFactory.createEntityManager();
-    }
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -110,11 +106,6 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         return properties;
-    }
-
-    @Bean
-    public BlogRepository blogRepository(){
-        return new BlogRepositoryImpl();
     }
 
     @Bean
