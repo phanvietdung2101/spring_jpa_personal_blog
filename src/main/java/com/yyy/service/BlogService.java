@@ -15,4 +15,6 @@ public interface BlogService {
     void remove(Long id);
 
     List<BlogType> findAllBlogType();
+
+    List<Blog> findAllBlogByBlogType_Id(long id);
 }

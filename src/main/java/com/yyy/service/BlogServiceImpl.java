@@ -44,4 +44,9 @@ public class BlogServiceImpl implements BlogService {
     public List<BlogType> findAllBlogType() {
         return ( List<BlogType> ) blogTypeRepository.findAll();
     }
+
+    @Override
+    public List<Blog> findAllBlogByBlogType_Id(long id) {
+        return blogRepository.findBlogsByBlogType_Id(id);
+    }
 }
