@@ -49,4 +49,9 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> findAllBlogByBlogType_Id(long id) {
         return blogRepository.findBlogsByBlogType_Id(id);
     }
+
+    @Override
+    public List<Blog> findBlogsByBlogTitle(String regex) {
+        return blogRepository.findBlogsByTitleContaining(regex);
+    }
 }

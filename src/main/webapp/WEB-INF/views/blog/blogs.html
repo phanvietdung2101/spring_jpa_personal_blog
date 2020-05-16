@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-</head>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"  crossorigin="anonymous"></script></head>
 <body>
-<table>
+
+<input type="text" name="search-box" id="search-box">
+<button type="button" onclick="search()" value="Search">Search</button>
+<div id="result" >
+
+</div>
+<table border="1">
     <tr>
         <th>Title</th>
         <th>Type</th>
@@ -19,6 +25,29 @@
         </tr>
     </th:block>
 </table>
-
+<script>
+    function search() {
+        let keyword = $("#search-box").val();
+        let url = 'http://localhost:8080/api/find/' + keyword;
+        $.ajax({
+            type : "GET",
+            url: url,
+            success: function (blogList) {
+                console.log(blogList);
+                showBlogList(blogList)
+            },
+        });
+    }
+    function showBlogList(blogList) {
+        let table = "<table>"
+        for(let blog of blogList ){
+            table += "<tr>";
+            table += "<td>" + blog.title + "</td>";
+            table += "</tr>";
+        }
+        table += "</table>";
+        $("#result").html(table);
+    }
+</script>
 </body>
-</html>
+</html>-

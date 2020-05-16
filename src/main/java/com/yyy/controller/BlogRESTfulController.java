@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -41,4 +42,17 @@ public class BlogRESTfulController {
             return new ResponseEntity<List<Blog>>(HttpStatus.NO_CONTENT);
         return new ResponseEntity<List<Blog>>(blogs,HttpStatus.OK);
     }
+    
+    @GetMapping("/api/find/{keyword}")
+    public List<Blog> findBlogByName(@PathVariable String keyword){
+        List<Blog> blogs = blogService.findBlogsByBlogTitle(keyword);
+        return blogs;
+    }
+
+//    @GetMapping("/api/find/{keyword}")
+//    public ResponseEntity<List<Blog>> findBlogByName(@PathVariable String keyword){
+//        List<Blog> blogIterator = blogService.findBlogsByBlogTitle(keyword);
+//        return new ResponseEntity<>(blogIterator, HttpStatus.OK);
+//    }
+
 }

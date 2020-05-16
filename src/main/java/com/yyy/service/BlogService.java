@@ -17,4 +17,6 @@ public interface BlogService {
     List<BlogType> findAllBlogType();
 
     List<Blog> findAllBlogByBlogType_Id(long id);
+
+    List<Blog> findBlogsByBlogTitle(String regex);
 }
